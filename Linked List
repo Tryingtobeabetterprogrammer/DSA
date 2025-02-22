@@ -1,0 +1,90 @@
+class Node:
+    def __init__(self,data=None,next=None):
+        self.data=data
+        self.next=next
+
+class LinkedListed:
+    def __init__(self):
+        self.head=None
+    
+    def insert_at_start(self,data):
+        node=Node(data,self.head)
+        self.head=node
+    
+    def insert_at_end(self,data):
+        if self.head is None:
+            new_node=Node(data,None)
+            self.head=new_node
+        else:
+            i=self.head
+            while i.next:
+                i=i.next
+            i.next=Node(data,None)
+            return
+
+    def length(self):
+        count=0
+        i=self.head
+        while i:
+            i=i.next
+            count+=1
+
+        return count
+
+    def reomve(self,index):
+        count=0
+        if index<0 |index >=self.length():
+            raise KeyError       
+        else:
+            count=0
+            i=self.head
+            while i:
+                if count==index-1:
+                    i.next=i.next.next
+                    break
+                
+            i=i.next
+            count+=1
+
+    def insert(self,index,data):
+        count=0
+        if index<0 or index >=self.length():
+            raise KeyError
+        elif index==0:
+            self.insert_at_start(data)
+            return
+        else:
+            i=self.head
+            while i:
+                if count==index-1:
+                    i.next=Node(data,i.next)
+                    break
+
+                i=i.next
+                count+=1
+    def insert_value(self,data_list):
+        self.head=None
+        for data in data_list:
+            self.insert_at_end(data)
+
+    def print(self):
+        if self.head is None:
+            raise KeyError
+
+        else:
+            i=self.head
+            st=''
+            while i:
+                st+=str(i.data)+'-->'
+                i=i.next
+            
+            print(st)
+    
+if __name__=='__main__':
+    ll=LinkedListed()
+    ll.insert_at_start(4)
+    ll.insert_at_start(5)
+    ll.print() 
+
+            
+        
