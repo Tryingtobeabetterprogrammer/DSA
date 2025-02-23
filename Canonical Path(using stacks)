@@ -1,0 +1,25 @@
+class solution:
+    def __init__(self):
+        self.stc=[]
+        
+    def simlipfyPath(self,path):
+        for dic in path.split('/'):
+            if dic=='':
+                continue   #dont use pass cz pass doesnt loop after when its passed, continue does a loop stuff
+            if dic=='.':
+                continue    #dont use pass cz pass doesnt loop after when its passed, continue does a loop stuff
+            if dic=='..':
+                if self.stc:
+                    self.stc.pop()
+            else:
+                self.stc.append(dic)
+        return  '/'+'/'.join(self.stc)
+
+solutio = solution()
+result = solutio.simlipfyPath("/home/user/../user/docs/./file.txt")
+print(result)
+
+
+
+###/home/user/docs/file.txt
+        
