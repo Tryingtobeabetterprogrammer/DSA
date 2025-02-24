@@ -1,0 +1,33 @@
+class stack:
+    def __init__(self):
+        self.stack=[]#here we use two emmpty list ,1 is for storing the parethese another one is for storing the index of invalid paretheses 
+
+    def bob(self,data):
+        self.ok=[0]*len(data)
+        for i,char in enumerate(data):
+            if char =='(':
+                self.stack.append(i)
+            elif char==')':
+                if self.stack:
+                    self.ok[self.stack.pop()]=1
+                    self.ok[i]=1
+                else:
+                    continue
+            else:
+                continue
+        
+        ans=''
+        for i,char in enumerate(data):
+            if char in '()':
+                if self.ok[i]:
+                    ans+=char
+                else:
+                    pass
+            else:
+                ans+=char
+        return ans
+
+if __name__=='__main__':
+    ll=stack()
+    a=ll.bob('(1223(!2))')
+    print(a)
