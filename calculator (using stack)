@@ -1,0 +1,58 @@
+import operator
+class stack:
+    def infix_to_postfix(self,data):
+
+        self.postfix=[]
+        self.stack=[]
+        p={'(':0,')':0,'+':1,'-':1,'*':2,'/':2,'^':3}
+        op=set(['+','-','*','/'])
+
+        for char in data:
+            if char=='(':
+                self.stack.append(char)
+            elif char==')':
+                while self.stack[-1]!='(':
+                    self.postfix.append(self.stack.pop())
+                self.stack.pop()
+
+            if char not in op:
+                self.postfix.append(int(char))
+            elif char in op:
+                while self.stack and p[self.stack[-1]]>=char:
+                    self.postfix.append(self.stack.pop())
+                self.stack.append(char)
+                
+        while self.stack:
+            self.postfix.append(self.stack.pop())#mostly when we have one operator in the stack
+
+
+        return self.postfix
+    def eval(self,postfix):
+        self.stack=[]
+
+        ops={
+            '+':operator.add,
+            '-':operator.sub,
+            '*':operator.mul,
+            '/':operator.truediv
+
+        }
+        for char in postfix:
+            if char not in ops:
+                self.stack.append(int(char))
+            else:
+                a=self.stack.pop()
+                b=self.stack.pop()
+                r=ops[char](a,b)
+                self.stack.append(int(r))
+        return self.stack[0]
+
+
+
+if __name__=='__main__':
+    ll=stack()
+    a=ll.infix_to_postfix('1+2')
+    b=ll.eval(a)
+    print(b)
+
+
