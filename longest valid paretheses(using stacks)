@@ -1,0 +1,28 @@
+class stack:
+    def __init__(self):
+        self.stack=[]
+
+    def bob(self,data):
+        self.ok=[0]*len(data)
+        for i,char in enumerate(data):
+            if char =='(':
+                self.stack.append(i)
+            else:
+                if self.stack:
+                    self.ok[self.stack.pop()]=1
+                    self.ok[i]=1
+                else:
+                    pass
+        count=0
+        ans=0
+        for i in range(len(data)):
+            if self.ok[i]:
+                count+=1
+            else:
+                count=0
+            ans=max(ans,count)# tihs should needto outside thee else codition cz it wont give answer
+        return ans
+if  __name__=='__main__':
+    ll=stack()
+    a=ll.bob('()(((')
+    print(a)
