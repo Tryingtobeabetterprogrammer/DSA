@@ -1,0 +1,7 @@
+def sigma(s):
+    d='()'
+    f=''.join([char for char in s if char in d])
+
+    return f
+s='(ana(sa)'
+print(sigma(s))
