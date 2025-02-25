@@ -1,0 +1,29 @@
+from collections import deque
+class st:
+    def __init__(self):
+        self.stack=deque()
+    def push(self,data):
+        self.stack.append(data)
+    def peek(self):
+        return self.stack[-1]
+    def pop(self):
+        return self.stack.pop() #this pop() will itself show the top vaulr no need to place [-1] which wil throw an error 
+    def size(self):
+        return len(self.stack)
+    def reverse(self,s):
+        rst=''
+        for char in s:
+            self.push(char)
+
+            
+        while self.size()!=0:
+            rst+=self.pop()
+        return rst
+
+if __name__=='__main__':
+    ll=st()
+    a="We will conquere COVID-19"
+    b=ll.reverse(a)
+    print(b)
+    
+  
